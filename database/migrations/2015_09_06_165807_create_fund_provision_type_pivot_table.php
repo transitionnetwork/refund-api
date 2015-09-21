@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateFundProvisionTypePivotTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateFundProvisionTypePivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('fund_provision_type', function(Blueprint $table) {
+        Schema::create('fund_provision_type', function (Blueprint $table) {
             $table->integer('fund_id')->unsigned()->index();
             $table->foreign('fund_id')->references('id')->on('funds')->onDelete('cascade');
 
