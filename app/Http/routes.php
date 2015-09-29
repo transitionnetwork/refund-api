@@ -17,11 +17,19 @@ Route::group(['prefix' => 'v1'], function () {
     Route::resource('countries.funds', 'CountryFundsController', ['only' => ['index', 'show']]);
 
     // Locations
+    Route::resource('locations', 'LocationController', ['except' => ['create', 'edit']]);
+    Route::resource('locations.funds', 'LocationFundsController', ['only' => ['index', 'show']]);
 
     // Regions
+    Route::resource('regions', 'RegionController', ['except' => ['create', 'edit']]);
+    Route::resource('regions.funds', 'RegionFundsController', ['only' => ['index', 'show']]);
 
     // Organisation Types
+    Route::resource('organisation-types', 'OrganisationTypeController', ['except' => ['create', 'edit']]);
+    Route::resource('organisation-types.funds', 'OrganisationTypeFundsController', ['only' => ['index', 'show']]);
 
     // Provision Types
+    Route::resource('provision-types', 'ProvisionTypeController', ['except' => ['create', 'edit']]);
+    Route::resource('provision-types.funds', 'ProvisionTypeFundsController', ['only' => ['index', 'show']]);
 
 });
