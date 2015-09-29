@@ -17,11 +17,12 @@ class Fund extends Model
         'min_size',
         'max_size',
         'focus',
-        'status'
+        'status',
     ];
 
     /**
-     * Returns the provider associated with the fund
+     * Returns the provider associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function provider()
@@ -30,7 +31,8 @@ class Fund extends Model
     }
 
     /**
-     * Returns the regions associated with the fund
+     * Returns the regions associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function regions()
@@ -39,7 +41,8 @@ class Fund extends Model
     }
 
     /**
-     * Returns the countries associated with the fund
+     * Returns the countries associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function countries()
@@ -48,7 +51,8 @@ class Fund extends Model
     }
 
     /**
-     * Returns the locations associated with the fund
+     * Returns the locations associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function locations()
@@ -57,7 +61,8 @@ class Fund extends Model
     }
 
     /**
-     * Returns the organisation types associated with the fund
+     * Returns the organisation types associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function organisation_types()
@@ -66,7 +71,8 @@ class Fund extends Model
     }
 
     /**
-     * Returns the provision types associated with the fund
+     * Returns the provision types associated with the fund.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function provision_types()

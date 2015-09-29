@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateFundActionsTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateFundActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fund_actions', function(Blueprint $table) {
+        Schema::create('fund_actions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('action')->unique();
             $table->timestamps();
