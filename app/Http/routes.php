@@ -7,6 +7,10 @@ Route::group(['prefix' => 'v1'], function () {
     // Funds
     Route::resource('funds', 'FundController', ['except' => ['create', 'edit']]);
     Route::resource('funds.countries', 'FundCountriesController', ['only' => ['index', 'show']]);
+    Route::resource('funds.locations', 'FundLocationsController', ['only' => ['index', 'show']]);
+    Route::resource('funds.regions', 'FundRegionsController', ['only' => ['index', 'show']]);
+    Route::resource('funds.provision-types', 'FundProvisionTypesController', ['only' => ['index', 'show']]);
+    Route::resource('funds.organisation-types', 'FundOrganisationTypesController', ['only' => ['index', 'show']]);
 
     // Providers
     Route::resource('providers', 'ProviderController', ['except' => ['create', 'edit']]);
