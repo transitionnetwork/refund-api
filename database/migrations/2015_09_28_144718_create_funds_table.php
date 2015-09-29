@@ -15,7 +15,7 @@ class CreateFundsTable extends Migration
         Schema::create('funds', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('provider_id')->unsigned();
+            $table->integer('provider_id')->unsigned()->nullable();
             $table->foreign('provider_id')->references('id')->on('providers');
 
             $table->string('name');
@@ -23,8 +23,8 @@ class CreateFundsTable extends Migration
             $table->string('investment_term');
             $table->string('loans_rate');
 
-            $table->integer('min_size');
-            $table->integer('max_size');
+            $table->integer('min_size')->default(0);
+            $table->integer('max_size')->default(0);
 
             $table->text('focus');
 
