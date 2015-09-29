@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateProvisionTypesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateProvisionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provision_types', function(Blueprint $table) {
+        Schema::create('provision_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
