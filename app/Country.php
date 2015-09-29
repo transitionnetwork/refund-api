@@ -11,7 +11,8 @@ class Country extends Model
     protected $fillable = ['name'];
 
     /**
-     * Returns the funds associated with the region
+     * Returns the funds associated with the region.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function funds()

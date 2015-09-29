@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Fund;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class FundController extends Controller
 {
@@ -23,7 +22,8 @@ class FundController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -34,15 +34,15 @@ class FundController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $fund = Fund::find($id);
 
-        if ( ! $fund)
-        {
+        if (!$fund) {
             return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
         }
 
@@ -52,8 +52,9 @@ class FundController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -64,7 +65,8 @@ class FundController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
