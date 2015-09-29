@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Provider;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class ProviderController extends Controller
 {
@@ -43,8 +42,7 @@ class ProviderController extends Controller
     {
         $provider = Provider::find($id);
 
-        if ( ! $provider)
-        {
+        if (!$provider) {
             return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
         }
 

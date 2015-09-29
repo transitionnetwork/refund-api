@@ -48,11 +48,10 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        if ($e instanceof NotFoundHttpException)
-        {
+        if ($e instanceof NotFoundHttpException) {
             return response()->json([
                 'message' => 'Invalid URI.',
-                'code'    => 404
+                'code'    => 404,
             ], 404);
         }
 
