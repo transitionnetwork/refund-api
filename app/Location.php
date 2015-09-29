@@ -17,6 +17,6 @@ class Location extends Model
      */
     public function funds()
     {
-        return $this->hasMany('App\Fund');
+        return $this->belongsToMany('App\Fund');
     }
 }
