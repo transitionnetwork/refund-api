@@ -11,7 +11,7 @@ class ProvisionType extends Model
     protected $fillable = ['name'];
 
     /**
-     * Returns the funds associated with the region.
+     * Returns the funds associated with the provision type.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

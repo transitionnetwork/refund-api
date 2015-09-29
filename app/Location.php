@@ -11,7 +11,7 @@ class Location extends Model
     protected $fillable = ['name'];
 
     /**
-     * Returns the funds associated with the region.
+     * Returns the funds associated with the location.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

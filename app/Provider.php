@@ -11,7 +11,7 @@ class Provider extends Model
     protected $fillable = ['name'];
 
     /**
-     * Returns the funds associated with the region.
+     * Returns the funds associated with the provider.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

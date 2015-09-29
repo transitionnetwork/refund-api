@@ -11,7 +11,7 @@ class OrganisationType extends Model
     protected $fillable = ['name'];
 
     /**
-     * Returns the funds associated with the region.
+     * Returns the funds associated with the organisation type.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
