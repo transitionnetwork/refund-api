@@ -1,20 +1,24 @@
 <?php
 
-// Users
+Route::group(['prefix' => 'v1'], function() {
 
-// Funds
-Route::resource('funds', 'FundController');
-Route::resource('funds.countries', 'FundCountriesController');
+    // Users
 
-// Providers
-Route::resource('providers', 'ProviderController');
+    // Funds
+    Route::resource('funds', 'FundController');
+    Route::resource('funds.countries', 'FundCountriesController');
 
-// Countries
+    // Providers
+    Route::resource('providers', 'ProviderController');
 
-// Locations
+    // Countries
 
-// Regions
+    // Locations
 
-// Organisation Types
+    // Regions
 
-// Provision Types
+    // Organisation Types
+
+    // Provision Types
+
+});

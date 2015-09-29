@@ -28,7 +28,9 @@ class FundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $values = Input::only(['name', 'website']);
+
+        
     }
 
     /**

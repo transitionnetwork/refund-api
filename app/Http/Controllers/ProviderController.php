@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Provider;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ProviderController extends Controller
 {
@@ -15,7 +15,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::all();
+
+        return response()->json(['data' => $providers], 200);
     }
 
     /**
@@ -37,7 +39,14 @@ class ProviderController extends Controller
      */
     public function show($id)
     {
-        //
+        $provider = Provider::find($id);
+
+        if ( ! $provider)
+        {
+            return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
+        }
+
+        return response()->json(['data' => $provider], 200);
     }
 
     /**
