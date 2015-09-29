@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Provider;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class ProviderFundsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @param $provider_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($provider_id)

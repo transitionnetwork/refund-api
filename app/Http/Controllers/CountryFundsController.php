@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Country;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class CountryFundsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @param $country_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($country_id)
@@ -31,6 +29,7 @@ class CountryFundsController extends Controller
      *
      * @param $country_id
      * @param $fund_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($country_id, $fund_id)

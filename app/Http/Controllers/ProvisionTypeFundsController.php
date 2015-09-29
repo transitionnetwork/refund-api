@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\ProvisionType;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class ProvisionTypeFundsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @param $provision_type_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($provision_type_id)
@@ -31,6 +29,7 @@ class ProvisionTypeFundsController extends Controller
      *
      * @param $provision_type_id
      * @param $fund_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($provision_type_id, $fund_id)
