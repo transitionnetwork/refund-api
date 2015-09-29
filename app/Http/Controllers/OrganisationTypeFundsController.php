@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\OrganisationType;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class OrganisationTypeFundsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @param $organisation_type_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($organisation_type_id)
@@ -31,6 +29,7 @@ class OrganisationTypeFundsController extends Controller
      *
      * @param $organisation_type_id
      * @param $fund_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($organisation_type_id, $fund_id)
