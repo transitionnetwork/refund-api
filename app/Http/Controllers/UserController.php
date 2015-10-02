@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Fund;
-use App\Http\Requests\CreateFundRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
-class FundController extends Controller
+class UserController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('oauth', ['except' => ['index', 'show']]);
+        $this->middleware('oauth');
     }
 
     /**
@@ -21,7 +22,7 @@ class FundController extends Controller
      */
     public function index()
     {
-        $funds = Fund::all();
+        $funds = User::all();
 
         return response()->json(['data' => $funds], 200);
     }
@@ -29,23 +30,27 @@ class FundController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateFundRequest $request
+     * @param CreateUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateFundRequest $request)
+    public function store(CreateUserRequest $request)
     {
-        $values = $request->only(['name']);
+        $values = $request->only([
+            'first_name',
+            'last_name',
+            'email',
+            'password'
+        ]);
 
-        Fund::create($values);
+        User::create($values);
 
-        return response()->json(['message' => 'Fund successfully created.', 'code' => 201], 201);
+        return response()->json(['message' => 'User successfully created.', 'code' => 201], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,9 +67,8 @@ class FundController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,8 +79,7 @@ class FundController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

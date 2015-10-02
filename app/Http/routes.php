@@ -3,6 +3,7 @@
 Route::group(['prefix' => 'v1'], function () {
 
     // Users
+    Route::resource('users', 'UserController');
 
     // Funds
     Route::resource('funds', 'FundController', ['except' => ['create', 'edit']]);
@@ -36,4 +37,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::resource('provision-types', 'ProvisionTypeController', ['except' => ['create', 'edit']]);
     Route::resource('provision-types.funds', 'ProvisionTypeFundsController', ['only' => ['index', 'show']]);
 
+});
+
+
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
 });
