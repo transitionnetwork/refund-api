@@ -1,4 +1,4 @@
-## REfund RESTful API 
+## REfund API 
 
 ## Documentation
 
