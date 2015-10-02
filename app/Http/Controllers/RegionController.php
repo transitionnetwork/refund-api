@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Fund;
-use App\Http\Requests\CreateFundRequest;
+use App\Region;
 use Illuminate\Http\Request;
 
-class FundController extends Controller
+class RegionController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('oauth', ['except' => ['index', 'show']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,24 +14,21 @@ class FundController extends Controller
      */
     public function index()
     {
-        $funds = Fund::all();
+        $regions = Region::all();
 
-        return response()->json(['data' => $funds], 200);
+        return response()->json(['data' => $regions], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateFundRequest $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateFundRequest $request)
+    public function store(Request $request)
     {
-        $values = $request->only(['name']);
-
-        Fund::create($values);
-
-        return response()->json(['message' => 'Fund successfully created.', 'code' => 201], 201);
+        //
     }
 
     /**
@@ -50,13 +40,13 @@ class FundController extends Controller
      */
     public function show($id)
     {
-        $fund = Fund::find($id);
+        $region = Region::find($id);
 
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
+        if (!$region) {
+            return response()->json(['message' => 'The region could not be found.', 'code' => 404], 404);
         }
 
-        return response()->json(['data' => $fund], 200);
+        return response()->json(['data' => $region], 200);
     }
 
     /**
