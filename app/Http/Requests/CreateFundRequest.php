@@ -22,7 +22,8 @@ class CreateFundRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name'        => 'required',
+            'provider_id' => 'required|exists:providers,id',
         ];
     }
 

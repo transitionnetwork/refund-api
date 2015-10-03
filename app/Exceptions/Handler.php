@@ -50,10 +50,11 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof NotFoundHttpException) {
             return response()->json(['message' => 'Bad request.', 'code' => 400], 400);
-        } else {
-            return response()->json(['message' => 'An unexpected error occurred. Please try again later.', 'code' => 500], 500);
         }
+//        else {
+//            return response()->json(['message' => 'An unexpected error occurred. Please try again later.', 'code' => 500], 500);
+//        }
 
-//        return parent::render($request, $e);
+        return parent::render($request, $e);
     }
 }

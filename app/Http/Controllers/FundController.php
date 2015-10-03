@@ -34,7 +34,17 @@ class FundController extends Controller
      */
     public function store(CreateFundRequest $request)
     {
-        $values = $request->only(['name']);
+        $values = $request->only([
+            'provider_id',
+            'name',
+            'website',
+            'investment_term',
+            'loans_rate',
+            'min_size',
+            'max_size',
+            'focus',
+            'status',
+        ]);
 
         Fund::create($values);
 
