@@ -30,8 +30,10 @@ class CreateUserRequest extends Request
     }
 
     /**
-     * Return a JSON response if an error occurs
+     * Return a JSON response if an error occurs.
+     *
      * @param array $errors
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function response(array $errors)
@@ -39,11 +41,9 @@ class CreateUserRequest extends Request
         $error_message = '';
 
         $i = 0;
-        foreach ($errors as $error)
-        {
-            foreach ($error as $key => $field)
-            {
-                $error_message .= ($i > 0) ? ' ' . $field : $field;
+        foreach ($errors as $error) {
+            foreach ($error as $key => $field) {
+                $error_message .= ($i > 0) ? ' '.$field : $field;
 
                 $i++;
             }

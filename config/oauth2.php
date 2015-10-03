@@ -29,10 +29,10 @@ return [
 
     'grant_types' => [
         'password' => [
-            'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
-            'callback' => '\App\PasswordGrantVerifier@verify',
-            'access_token_ttl' => 86400
-        ]
+            'class'            => '\League\OAuth2\Server\Grant\PasswordGrant',
+            'callback'         => '\App\PasswordGrantVerifier@verify',
+            'access_token_ttl' => 86400,
+        ],
     ],
 
     /*

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class FundController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -30,6 +29,7 @@ class FundController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateFundRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateFundRequest $request)

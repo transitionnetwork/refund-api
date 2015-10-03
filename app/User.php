@@ -38,7 +38,8 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password'];
 
     /**
-     * Hash the password automatically
+     * Hash the password automatically.
+     *
      * @param $password
      */
     public function setPassword($password)
