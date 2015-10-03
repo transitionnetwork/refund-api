@@ -24,13 +24,15 @@ class UpdateUserRequest extends Request
         return [
             'first_name' => 'required',
             'last_name'  => 'required',
-            'email'      => 'required|unique:users,email,' . $this->route()->getParameter('users')->id,
+            'email'      => 'required|unique:users,email,'.$this->route()->getParameter('users')->id,
         ];
     }
 
     /**
-     * Return a JSON response if an error occurs
+     * Return a JSON response if an error occurs.
+     *
      * @param array $errors
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function response(array $errors)
@@ -38,11 +40,9 @@ class UpdateUserRequest extends Request
         $error_message = '';
 
         $i = 0;
-        foreach ($errors as $error)
-        {
-            foreach ($error as $key => $field)
-            {
-                $error_message .= ($i > 0) ? ' ' . $field : $field;
+        foreach ($errors as $error) {
+            foreach ($error as $key => $field) {
+                $error_message .= ($i > 0) ? ' '.$field : $field;
 
                 $i++;
             }
