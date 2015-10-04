@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('oauth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

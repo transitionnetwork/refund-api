@@ -18,7 +18,6 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
-        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
         \Barryvdh\Cors\HandleCors::class,
     ];
 
@@ -30,7 +29,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth'                       => \App\Http\Middleware\Authenticate::class,
         'auth.basic'                 => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.basic.once'            => \App\Http\Middleware\OnceAuth::class,
         'csrf'                       => \App\Http\Middleware\VerifyCsrfToken::class,
         'guest'                      => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'oauth'                      => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
