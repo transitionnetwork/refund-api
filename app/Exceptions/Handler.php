@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\ProvisionType;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -52,12 +53,36 @@ class Handler extends ExceptionHandler
         {
             return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
         }
-        else
+        elseif ($e instanceof ProvisionTypeNotFoundException)
         {
-            return response()->json(['message' => 'An unexpected error occurred. Please try again later.', 'code' => 500], 500);
+            return response()->json(['message' => 'The provision type could not be found.', 'code' => 404], 404);
         }
+        elseif ($e instanceof CountryNotFoundException)
+        {
+            return response()->json(['message' => 'The country could not be found.', 'code' => 404], 404);
+        }
+        elseif ($e instanceof RegionNotFoundException)
+        {
+            return response()->json(['message' => 'The region could not be found.', 'code' => 404], 404);
+        }
+        elseif ($e instanceof LocationNotFoundException)
+        {
+            return response()->json(['message' => 'The location could not be found.', 'code' => 404], 404);
+        }
+        elseif ($e instanceof OrganisationTypeNotFoundException)
+        {
+            return response()->json(['message' => 'The organisation type could not be found.', 'code' => 404], 404);
+        }
+        elseif ($e instanceof ProviderNotFoundException)
+        {
+            return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
+        }
+//        else
+//        {
+//            return response()->json(['message' => 'An unexpected error occurred. Please try again later.', 'code' => 500], 500);
+//        }
 
-//        return parent::render($request, $e);
+        return parent::render($request, $e);
 
     }
 }

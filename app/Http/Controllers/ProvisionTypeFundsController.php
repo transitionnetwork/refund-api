@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fund;
 use App\ProvisionType;
 
 class ProvisionTypeFundsController extends Controller
@@ -14,38 +15,25 @@ class ProvisionTypeFundsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $provision_type_id
-     *
+     * @param ProvisionType $provision_type
      * @return \Illuminate\Http\Response
      */
-    public function index($provision_type_id)
+    public function index(ProvisionType $provision_type)
     {
-        $provision_type = ProvisionType::find($provision_type_id);
-
-        if (!$provision_type) {
-            return response()->json(['message' => 'The provision type could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $provision_type->funds], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $provision_type_id
-     * @param $fund_id
-     *
+     * @param ProvisionType $provision_type
+     * @param Fund $fund
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($provision_type_id, $fund_id)
+    public function show(ProvisionType $provision_type, Fund $fund)
     {
-        $provision_type = ProvisionType::find($provision_type_id);
-
-        if (!$provision_type) {
-            return response()->json(['message' => 'The provision type could not be found.', 'code' => 404], 404);
-        }
-
-        $fund = $provision_type->funds->find($fund_id);
+        $fund = $provision_type->funds->find($fund->id);
 
         if (!$fund) {
             return response()->json(['message' => 'The fund is not associated with this provision type.', 'code' => 404], 404);

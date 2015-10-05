@@ -25,16 +25,6 @@ class OrganisationTypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -49,31 +39,13 @@ class OrganisationTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param OrganisationType $organisation_type
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(OrganisationType $organisation_type)
     {
-        $organisation_type = OrganisationType::find($id);
-
-        if (!$organisation_type) {
-            return response()->json(['message' => 'The organisation type could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $organisation_type], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

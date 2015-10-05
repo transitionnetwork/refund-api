@@ -39,18 +39,12 @@ class RegionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param Region $region
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(Region $region)
     {
-        $region = Region::find($id);
-
-        if (!$region) {
-            return response()->json(['message' => 'The region could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $region], 200);
     }
 

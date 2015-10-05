@@ -40,18 +40,11 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param Country $country
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Country $country)
     {
-        $country = Country::find($id);
-
-        if (!$country) {
-            return response()->json(['message' => 'The country could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $country], 200);
     }
 

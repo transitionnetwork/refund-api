@@ -39,18 +39,12 @@ class ProviderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param Provider $provider
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(Provider $provider)
     {
-        $provider = Provider::find($id);
-
-        if (!$provider) {
-            return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $provider], 200);
     }
 

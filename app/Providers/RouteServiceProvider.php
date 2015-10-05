@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Exceptions\CountryNotFoundException;
 use App\Exceptions\FundNotFoundException;
+use App\Exceptions\LocationNotFoundException;
+use App\Exceptions\OrganisationTypeNotFoundException;
+use App\Exceptions\ProvisionTypeNotFoundException;
+use App\Exceptions\RegionNotFoundException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -31,15 +36,34 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->model('users', 'App\User');
-        $router->model('regions', 'App\Region');
-        $router->model('provision_types', 'App\ProvisionType');
+
+        $router->model('regions', 'App\Region', function() {
+            throw new RegionNotFoundException;
+        });
+
+        $router->model('provision_types', 'App\ProvisionType', function() {
+            throw new ProvisionTypeNotFoundException;
+        });
+
         $router->model('funds', 'App\Fund', function() {
             throw new FundNotFoundException;
         });
-        $router->model('providers', 'App\Provider');
-        $router->model('organisation_types', 'App\OrganisationType');
-        $router->model('locations', 'App\Location');
-        $router->model('countries', 'App\Country');
+
+        $router->model('providers', 'App\Provider', function() {
+            throw new ProviderNotFoundException;
+        });
+
+        $router->model('organisation_types', 'App\OrganisationType', function() {
+            throw new OrganisationTypeNotFoundException;
+        });
+
+        $router->model('locations', 'App\Location', function() {
+            throw new LocationNotFoundException;
+        });
+
+        $router->model('countries', 'App\Country', function() {
+            throw new CountryNotFoundException;
+        });
     }
 
     /**

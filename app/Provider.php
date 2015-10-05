@@ -17,6 +17,6 @@ class Provider extends Model
      */
     public function funds()
     {
-        return $this->belongsToMany('App\Fund');
+        return $this->hasMany('App\Fund');
     }
 }

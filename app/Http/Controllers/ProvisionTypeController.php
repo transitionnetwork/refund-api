@@ -39,18 +39,13 @@ class ProvisionTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param ProvisionType $provision_type
      * @return \Illuminate\Http\Response
+     * @internal param int $id
+     *
      */
-    public function show($id)
+    public function show(ProvisionType $provision_type)
     {
-        $provision_type = ProvisionType::find($id);
-
-        if (!$provision_type) {
-            return response()->json(['message' => 'The provision type could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $provision_type], 200);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Fund;
 
 class CountryFundsController extends Controller
 {
@@ -15,38 +16,24 @@ class CountryFundsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $country_id
-     *
+     * @param Country $country
      * @return \Illuminate\Http\Response
      */
-    public function index($country_id)
+    public function index(Country $country)
     {
-        $country = Country::find($country_id);
-
-        if (!$country) {
-            return response()->json(['message' => 'The country could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $country->funds], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $country_id
-     * @param $fund_id
-     *
+     * @param Country $country
+     * @param Fund $fund
      * @return \Illuminate\Http\Response
      */
-    public function show($country_id, $fund_id)
+    public function show(Country $country, Fund $fund)
     {
-        $country = Country::find($country_id);
-
-        if (!$country) {
-            return response()->json(['message' => 'The country could not be found.', 'code' => 404], 404);
-        }
-
-        $fund = $country->funds->find($fund_id);
+        $fund = $country->funds->find($fund->id);
 
         if (!$fund) {
             return response()->json(['message' => 'The fund is not associated with this country.', 'code' => 404], 404);

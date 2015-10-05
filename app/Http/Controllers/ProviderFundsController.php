@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fund;
 use App\Provider;
 
 class ProviderFundsController extends Controller
@@ -14,30 +15,18 @@ class ProviderFundsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $provider_id
-     *
+     * @param Provider $provider
      * @return \Illuminate\Http\Response
+     *
      */
-    public function index($provider_id)
+    public function index(Provider $provider)
     {
-        $provider = Provider::find($provider_id);
-
-        if (!$provider) {
-            return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $provider->funds], 200);
     }
 
-    public function show($provider_id, $fund_id)
+    public function show(Provider $provider, Fund $fund)
     {
-        $provider = Provider::find($provider_id);
-
-        if (!$provider) {
-            return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
-        }
-
-        $fund = $provider->funds->find($fund_id);
+        $fund = $provider->funds->find($fund->id);
 
         if (!$fund) {
             return response()->json(['message' => 'This fund is not associated with this provider.', 'code' => 404], 404);

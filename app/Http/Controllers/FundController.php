@@ -28,6 +28,8 @@ class FundController extends Controller
 
         if ($request->has('format') && $request->get('format') == 'frontend')
         {
+            return $this->frontendJSONTransformer($funds);
+
             return Cache::remember('funds-frontend', 15, function() use ($funds) {
                 return $this->frontendJSONTransformer($funds);
             });
@@ -112,45 +114,27 @@ class FundController extends Controller
 
             $countries = '';
 
-            if ( ! empty($fund->countries->toArray()))
+            if ( ! is_null($fund->countries))
             {
-                $temp = [];
-
-                foreach ($fund->countries as $country)
-                {
-                    $temp[] = $country->name;
-                }
-                $countries = implode(', ', $temp);
+                $countries = implode(', ', $fund->countries->lists('name')->toArray());
             }
 
             $data['countries']   = $countries;
 
             $regions = '';
 
-            if ( ! empty($fund->regions->toArray()))
+            if ( ! is_null($fund->regions))
             {
-                $temp = [];
-
-                foreach ($fund->regions as $region)
-                {
-                    $temp[] = $region->name;
-                }
-                $regions = implode(', ', $temp);
+                $regions = implode(', ', $fund->regions->lists('name')->toArray());
             }
 
-            $data['regions']     = $regions;
+            $data['regions'] = $regions;
 
             $locations = '';
 
-            if ( ! empty($fund->locations->toArray()))
+            if ( ! is_null($fund->locations))
             {
-                $temp = [];
-
-                foreach ($fund->locations as $location)
-                {
-                    $temp[] = $location->name;
-                }
-                $locations = implode(', ', $temp);
+                $locations = implode(', ', $fund->locations->lists('name')->toArray());
             }
 
             $data['locations']     = $locations;

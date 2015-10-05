@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fund;
+use App\Location;
 
 class FundLocationsController extends Controller
 {
@@ -15,38 +16,26 @@ class FundLocationsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $fund_id
-     *
+     * @param Fund $fund
      * @return \Illuminate\Http\Response
+     *
      */
-    public function index($fund_id)
+    public function index(Fund $fund)
     {
-        $fund = Fund::find($fund_id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $fund->locations], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $fund_id
-     * @param $location_id
-     *
+     * @param Fund $fund
+     * @param Location $location
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($fund_id, $location_id)
+    public function show(Fund $fund, Location $location)
     {
-        $fund = Fund::find($fund_id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
-        $location = $fund->locations->find($location_id);
+        $location = $fund->locations->find($location->id);
 
         if (!$location) {
             return response()->json(['message' => 'This location is not associated with this fund.', 'code' => 404], 404);

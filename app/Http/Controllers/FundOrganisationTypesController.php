@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fund;
+use App\OrganisationType;
 
 class FundOrganisationTypesController extends Controller
 {
@@ -15,38 +16,26 @@ class FundOrganisationTypesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $fund_id
-     *
+     * @param Fund $fund
      * @return \Illuminate\Http\Response
+     *
      */
-    public function index($fund_id)
+    public function index(Fund $fund)
     {
-        $fund = Fund::find($fund_id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $fund->organisation_types], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $fund_id
-     * @param $organisation_type_id
-     *
+     * @param Fund $fund
+     * @param OrganisationType $organisation_type
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($fund_id, $organisation_type_id)
+    public function show(Fund $fund, OrganisationType $organisation_type)
     {
-        $fund = Fund::find($fund_id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
-        $organisation_type = $fund->organisation_types->find($organisation_type_id);
+        $organisation_type = $fund->organisation_types->find($organisation_type->id);
 
         if (!$organisation_type) {
             return response()->json(['message' => 'This organisation type is not associated with this fund.', 'code' => 404], 404);
