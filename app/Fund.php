@@ -27,7 +27,7 @@ class Fund extends Model
      */
     public function provider()
     {
-        return $this->hasOne('App\Provider');
+        return $this->hasOne('App\Provider', 'id');
     }
 
     /**
@@ -78,5 +78,23 @@ class Fund extends Model
     public function provision_types()
     {
         return $this->belongsToMany('App\ProvisionType');
+    }
+
+    /**
+     * Checks to see if a specified provision type is associated with the fund.
+     * @param $type
+     * @return bool
+     */
+    public function hasProvisionType($type)
+    {
+        foreach ($this->provision_types as $provision_type)
+        {
+            if ($provision_type->name == $type)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

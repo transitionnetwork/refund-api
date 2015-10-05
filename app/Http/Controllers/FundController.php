@@ -16,11 +16,17 @@ class FundController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $funds = Fund::all();
+
+        if ($request->has('format') && $request->get('format') == 'frontend')
+        {
+            return $this->frontendJSONTransformer($funds);
+        }
 
         return response()->json(['data' => $funds], 200);
     }
@@ -54,18 +60,12 @@ class FundController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param Fund $fund
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(Fund $fund)
     {
-        $fund = Fund::find($id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
         return response()->json(['data' => $fund], 200);
     }
 
@@ -92,5 +92,56 @@ class FundController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function frontendJSONTransformer($funds)
+    {
+        $response = [];
+
+        foreach ($funds as $fund)
+        {
+            if ( ! is_null($fund->provider) && isset($fund->provider->name))
+            {
+                $data = [];
+
+                $data[] = ['name' => 'provider', 'value' => $fund->provider->name];
+                $data[] = ['name' => 'fund', 'value' => $fund->name];
+                $data[] = ['name' => 'weblink', 'value' => $fund->website];
+                $data[] = ['name' => 'description', 'value' => $fund->focus];
+                $data[] = ['name' => 'grant', 'value' => $fund->hasProvisionType('Grant')];
+                $data[] = ['name' => 'debt', 'value' => $fund->hasProvisionType('Loans')];
+                $data[] = ['name' => 'equity', 'value' => $fund->hasProvisionType('Equity')];
+                $data[] = ['name' => 'support', 'value' => $fund->hasProvisionType('Support')];
+                $data[] = ['name' => 'platform', 'value' => $fund->hasProvisionType('Platform')];
+                $data[] = ['name' => 'legislation', 'value' => $fund->hasProvisionType('Legislation')];
+                $data[] = ['name' => 'date', 'value' => $fund->created_at->format('Y/m/d')];
+
+                $regions = [];
+
+                foreach ($fund->regions as $region)
+                {
+                    $regions[] = $region->name;
+                }
+
+                $data[] = ['name' => 'regions', 'value' => $regions];
+
+                $locations = [];
+
+                foreach ($fund->locations as $location)
+                {
+                    $locations[] = $location->name;
+                }
+                $data[] = ['name' => 'locations', 'value' => $locations];
+
+                // Quickview
+                $data[] = ['name' => 'quickview', 'data' => [
+
+                ]];
+
+                $response[] = $data;
+            }
+        }
+
+        return response()->json(['data' => $response], 200);
     }
 }
