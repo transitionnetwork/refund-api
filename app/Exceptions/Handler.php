@@ -56,5 +56,8 @@ class Handler extends ExceptionHandler
         {
             return response()->json(['message' => 'An unexpected error occurred. Please try again later.', 'code' => 500], 500);
         }
+
+//        return parent::render($request, $e);
+
     }
 }

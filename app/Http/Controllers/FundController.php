@@ -104,44 +104,100 @@ class FundController extends Controller
             {
                 $data = [];
 
-                $data[] = ['name' => 'provider', 'value' => $fund->provider->name];
-                $data[] = ['name' => 'fund', 'value' => $fund->name];
-                $data[] = ['name' => 'weblink', 'value' => $fund->website];
-                $data[] = ['name' => 'description', 'value' => $fund->focus];
-                $data[] = ['name' => 'grant', 'value' => $fund->hasProvisionType('Grant')];
-                $data[] = ['name' => 'debt', 'value' => $fund->hasProvisionType('Loans')];
-                $data[] = ['name' => 'equity', 'value' => $fund->hasProvisionType('Equity')];
-                $data[] = ['name' => 'support', 'value' => $fund->hasProvisionType('Support')];
-                $data[] = ['name' => 'platform', 'value' => $fund->hasProvisionType('Platform')];
-                $data[] = ['name' => 'legislation', 'value' => $fund->hasProvisionType('Legislation')];
-                $data[] = ['name' => 'date', 'value' => $fund->created_at->format('Y/m/d')];
+                $data['name']        = $fund->name;
+                $data['provider']    = $fund->provider->name;
+                $data['country']     = ( ! empty($fund->countries->toArray())) ? $fund->countries->toArray()[0]['name'] : null;
+                $data['state']       = ( ! empty($fund->locations->toArray())) ? $fund->locations->toArray()[0]['name'] : null;
+                $data['date']        = $fund->created_at->format('Y/m/d');
+                $data['website']     = $fund->website;
+                $data['edit']        = true;
+                $data['description'] = $fund->focus;
 
-                $regions = [];
+                $data['cluster'] = [
+                    'grant'       => $fund->hasProvisionType('Grant'),
+                    'debt'        => $fund->hasProvisionType('Loans'),
+                    'equity'      => $fund->hasProvisionType('Equity'),
+                    'support'     => $fund->hasProvisionType('Support'),
+                    'platform'    => $fund->hasProvisionType('Platform'),
+                    'legislation' => $fund->hasProvisionType('Legislation'),
+                ];
 
-                foreach ($fund->regions as $region)
+                // Grant
+                if ($fund->hasProvisionType('Grant'))
                 {
-                    $regions[] = $region->name;
+                    $data['quickview'][] = [
+                        'name' => 'grants',
+                        'min'  => $fund->min_size,
+                        'max'  => $fund->max_size,
+                        'term' => null,
+                        'rate' => null
+                    ];
                 }
 
-                $data[] = ['name' => 'regions', 'value' => $regions];
-
-                $locations = [];
-
-                foreach ($fund->locations as $location)
+                // Loans
+                if ($fund->hasProvisionType('Loans'))
                 {
-                    $locations[] = $location->name;
+                    $data['quickview'][] = [
+                        'name' => 'loans',
+                        'min'  => $fund->min_size,
+                        'max'  => $fund->max_size,
+                        'term' => $fund->investment_term,
+                        'rate' => $fund->loans_rate
+                    ];
                 }
-                $data[] = ['name' => 'locations', 'value' => $locations];
 
-                // Quickview
-                $data[] = ['name' => 'quickview', 'data' => [
+                // Equity
+                if ($fund->hasProvisionType('Equity'))
+                {
+                    $data['quickview'][] = [
+                        'name' => 'equity',
+                        'min'  => $fund->min_size,
+                        'max'  => $fund->max_size,
+                        'term' => null,
+                        'rate' => null
+                    ];
+                }
 
-                ]];
+                // Support
+                if ($fund->hasProvisionType('Support'))
+                {
+                    $data['quickview'][] = [
+                        'name' => 'support',
+                        'min'  => null,
+                        'max'  => null,
+                        'term' => null,
+                        'rate' => null
+                    ];
+                }
+
+                // Platform
+                if ($fund->hasProvisionType('Platform'))
+                {
+                    $data['quickview'][] = [
+                        'name' => 'platform',
+                        'min'  => null,
+                        'max'  => null,
+                        'term' => null,
+                        'rate' => null
+                    ];
+                }
+
+                // Legislation
+                if ($fund->hasProvisionType('Legislation'))
+                {
+                    $data['quickview'][] = [
+                        'name' => 'legislation',
+                        'min'  => null,
+                        'max'  => null,
+                        'term' => null,
+                        'rate' => null
+                    ];
+                }
 
                 $response[] = $data;
             }
         }
 
-        return response()->json(['data' => $response], 200);
+        return response()->json($response, 200);
     }
 }
