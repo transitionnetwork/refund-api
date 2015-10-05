@@ -97,4 +97,22 @@ class Fund extends Model
 
         return false;
     }
+
+    /**
+     * Checks to see if a specified organisation type is associated with the fund.
+     * @param $type
+     * @return bool
+     */
+    public function hasOrganisationType($type)
+    {
+        foreach ($this->organisation_types as $organisation_type)
+        {
+            if ($organisation_type->name == $type)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
