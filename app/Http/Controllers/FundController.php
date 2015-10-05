@@ -106,12 +106,17 @@ class FundController extends Controller
 
                 $data['name']        = $fund->name;
                 $data['provider']    = $fund->provider->name;
-                $data['country']     = ( ! empty($fund->countries->toArray())) ? $fund->countries->toArray()[0]['name'] : null;
-                $data['state']       = ( ! empty($fund->locations->toArray())) ? $fund->locations->toArray()[0]['name'] : null;
+                $data['country']     = ( ! empty($fund->countries->toArray())) ? $fund->countries->toArray()[0]['name'] : "";
+                $data['state']       = ( ! empty($fund->locations->toArray())) ? $fund->locations->toArray()[0]['name'] : "";
                 $data['date']        = $fund->created_at->format('Y/m/d');
                 $data['website']     = $fund->website;
                 $data['edit']        = true;
                 $data['description'] = $fund->focus;
+
+                $data['organisation_types'] = [
+                    'profit'     => true,
+                    'non-profit' => true
+                ];
 
                 $data['cluster'] = [
                     'grant'       => $fund->hasProvisionType('Grant'),
