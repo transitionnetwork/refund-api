@@ -20,9 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $funds = User::all();
+        $users = User::all();
 
-        return response()->json(['data' => $funds], 200);
+        return response()->json(['data' => $users], 200);
     }
 
     /**
@@ -49,19 +49,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
+     *
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $fund = Fund::find($id);
-
-        if (!$fund) {
-            return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-
-        return response()->json(['data' => $fund], 200);
+        return response()->json(['data' => $user], 200);
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Exceptions\LocationNotFoundException;
 use App\Exceptions\OrganisationTypeNotFoundException;
 use App\Exceptions\ProvisionTypeNotFoundException;
 use App\Exceptions\RegionNotFoundException;
+use App\Exceptions\UserNotFoundException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -35,7 +36,9 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
-        $router->model('users', 'App\User');
+        $router->model('users', 'App\User', function() {
+            throw new UserNotFoundException;
+        });
 
         $router->model('regions', 'App\Region', function() {
             throw new RegionNotFoundException;
