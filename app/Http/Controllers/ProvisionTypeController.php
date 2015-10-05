@@ -40,9 +40,10 @@ class ProvisionTypeController extends Controller
      * Display the specified resource.
      *
      * @param ProvisionType $provision_type
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
      *
+     * @return \Illuminate\Http\Response
+     *
+     * @internal param int $id
      */
     public function show(ProvisionType $provision_type)
     {

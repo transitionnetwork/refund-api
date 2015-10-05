@@ -7,7 +7,6 @@ use App\Location;
 
 class FundLocationsController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -17,8 +16,8 @@ class FundLocationsController extends Controller
      * Display a listing of the resource.
      *
      * @param Fund $fund
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Fund $fund)
     {
@@ -28,10 +27,10 @@ class FundLocationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Fund $fund
+     * @param Fund     $fund
      * @param Location $location
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Fund $fund, Location $location)
     {

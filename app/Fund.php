@@ -84,15 +84,15 @@ class Fund extends Model
 
     /**
      * Checks to see if a specified provision type is associated with the fund.
+     *
      * @param $type
+     *
      * @return bool
      */
     public function hasProvisionType($type)
     {
-        foreach ($this->provision_types as $provision_type)
-        {
-            if ($provision_type->name == $type)
-            {
+        foreach ($this->provision_types as $provision_type) {
+            if ($provision_type->name == $type) {
                 return true;
             }
         }
@@ -102,15 +102,15 @@ class Fund extends Model
 
     /**
      * Checks to see if a specified organisation type is associated with the fund.
+     *
      * @param $type
+     *
      * @return bool
      */
     public function hasOrganisationType($type)
     {
-        foreach ($this->organisation_types as $organisation_type)
-        {
-            if ($organisation_type->name == $type)
-            {
+        foreach ($this->organisation_types as $organisation_type) {
+            if ($organisation_type->name == $type) {
                 return true;
             }
         }

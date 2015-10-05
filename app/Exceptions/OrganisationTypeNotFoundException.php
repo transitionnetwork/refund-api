@@ -1,5 +1,9 @@
-<?php namespace App\Exceptions;
+<?php
+
+namespace App\Exceptions;
 
 use Exception;
 
-class OrganisationTypeNotFoundException extends Exception {}
+class OrganisationTypeNotFoundException extends Exception
+{
+}

@@ -16,8 +16,8 @@ class LocationFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param Location $location
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Location $location)
     {
@@ -28,9 +28,9 @@ class LocationFundsController extends Controller
      * Display the specified resource.
      *
      * @param Location $location
-     * @param Fund $fund
-     * @return \Illuminate\Http\Response
+     * @param Fund     $fund
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Location $location, Fund $fund)
     {

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -41,8 +40,8 @@ class LocationController extends Controller
      * Display the specified resource.
      *
      * @param Location $location
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Location $location)
     {

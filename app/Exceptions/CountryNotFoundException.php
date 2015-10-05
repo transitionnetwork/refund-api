@@ -1,5 +1,9 @@
-<?php namespace App\Exceptions;
+<?php
+
+namespace App\Exceptions;
 
 use Exception;
 
-class CountryNotFoundException extends Exception {}
+class CountryNotFoundException extends Exception
+{
+}

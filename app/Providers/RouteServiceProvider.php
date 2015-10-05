@@ -36,36 +36,36 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
-        $router->model('users', 'App\User', function() {
-            throw new UserNotFoundException;
+        $router->model('users', 'App\User', function () {
+            throw new UserNotFoundException();
         });
 
-        $router->model('regions', 'App\Region', function() {
-            throw new RegionNotFoundException;
+        $router->model('regions', 'App\Region', function () {
+            throw new RegionNotFoundException();
         });
 
-        $router->model('provision_types', 'App\ProvisionType', function() {
-            throw new ProvisionTypeNotFoundException;
+        $router->model('provision_types', 'App\ProvisionType', function () {
+            throw new ProvisionTypeNotFoundException();
         });
 
-        $router->model('funds', 'App\Fund', function() {
-            throw new FundNotFoundException;
+        $router->model('funds', 'App\Fund', function () {
+            throw new FundNotFoundException();
         });
 
-        $router->model('providers', 'App\Provider', function() {
-            throw new ProviderNotFoundException;
+        $router->model('providers', 'App\Provider', function () {
+            throw new ProviderNotFoundException();
         });
 
-        $router->model('organisation_types', 'App\OrganisationType', function() {
-            throw new OrganisationTypeNotFoundException;
+        $router->model('organisation_types', 'App\OrganisationType', function () {
+            throw new OrganisationTypeNotFoundException();
         });
 
-        $router->model('locations', 'App\Location', function() {
-            throw new LocationNotFoundException;
+        $router->model('locations', 'App\Location', function () {
+            throw new LocationNotFoundException();
         });
 
-        $router->model('countries', 'App\Country', function() {
-            throw new CountryNotFoundException;
+        $router->model('countries', 'App\Country', function () {
+            throw new CountryNotFoundException();
         });
     }
 

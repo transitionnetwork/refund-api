@@ -16,8 +16,8 @@ class RegionFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param Region $region
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Region $region)
     {
@@ -28,9 +28,9 @@ class RegionFundsController extends Controller
      * Display the specified resource.
      *
      * @param Region $region
-     * @param Fund $fund
-     * @return \Illuminate\Http\Response
+     * @param Fund   $fund
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Region $region, Fund $fund)
     {

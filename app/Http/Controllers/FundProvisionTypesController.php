@@ -7,7 +7,6 @@ use App\ProvisionType;
 
 class FundProvisionTypesController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -17,8 +16,8 @@ class FundProvisionTypesController extends Controller
      * Display a listing of the resource.
      *
      * @param Fund $fund
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Fund $fund)
     {
@@ -28,12 +27,13 @@ class FundProvisionTypesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Fund $fund
+     * @param Fund          $fund
      * @param ProvisionType $provision_type
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param $fund_id
      * @internal param $provision_type_id
-     *
      */
     public function show(Fund $fund, ProvisionType $provision_type)
     {

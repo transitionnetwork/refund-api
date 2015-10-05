@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Fund;
 use App\Http\Requests\CreateFundRequest;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
 class FundController extends Controller
 {
@@ -18,17 +18,17 @@ class FundController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $funds = Cache::remember('funds', 15, function() {
+        $funds = Cache::remember('funds', 15, function () {
             return Fund::all();
         });
 
-        if ($request->has('format') && $request->get('format') == 'frontend')
-        {
-            return Cache::remember('funds-frontend', 15, function() use ($funds) {
+        if ($request->has('format') && $request->get('format') == 'frontend') {
+            return Cache::remember('funds-frontend', 15, function () use ($funds) {
                 return $this->frontendJSONTransformer($funds);
             });
         }
@@ -66,8 +66,8 @@ class FundController extends Controller
      * Display the specified resource.
      *
      * @param Fund $fund
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Fund $fund)
     {
@@ -103,26 +103,23 @@ class FundController extends Controller
     {
         $response = [];
 
-        foreach ($funds as $fund)
-        {
+        foreach ($funds as $fund) {
             $data = [];
 
-            $data['name']        = $fund->name;
-            $data['provider']    = isset($fund->provider->name) ? $fund->provider->name : '';
+            $data['name'] = $fund->name;
+            $data['provider'] = isset($fund->provider->name) ? $fund->provider->name : '';
 
             $countries = '';
 
-            if ( ! is_null($fund->countries))
-            {
+            if (!is_null($fund->countries)) {
                 $countries = implode(', ', $fund->countries->lists('name')->toArray());
             }
 
-            $data['countries']   = $countries;
+            $data['countries'] = $countries;
 
             $regions = '';
 
-            if ( ! is_null($fund->regions))
-            {
+            if (!is_null($fund->regions)) {
                 $regions = implode(', ', $fund->regions->lists('name')->toArray());
             }
 
@@ -130,21 +127,20 @@ class FundController extends Controller
 
             $locations = '';
 
-            if ( ! is_null($fund->locations))
-            {
+            if (!is_null($fund->locations)) {
                 $locations = implode(', ', $fund->locations->lists('name')->toArray());
             }
 
-            $data['locations']     = $locations;
+            $data['locations'] = $locations;
 
-            $data['date']        = $fund->created_at->format('d/m/y');
-            $data['website']     = $fund->website;
-            $data['edit']        = true;
+            $data['date'] = $fund->created_at->format('d/m/y');
+            $data['website'] = $fund->website;
+            $data['edit'] = true;
             $data['description'] = $fund->focus;
 
             $data['organisation_types'] = [
                 'profit'     => $fund->hasOrganisationType('For-profit'),
-                'non-profit' => $fund->hasOrganisationType('Non-profit')
+                'non-profit' => $fund->hasOrganisationType('Non-profit'),
             ];
 
             $data['cluster'] = [
@@ -157,74 +153,68 @@ class FundController extends Controller
             ];
 
             // Grant
-            if ($fund->hasProvisionType('Grant'))
-            {
+            if ($fund->hasProvisionType('Grant')) {
                 $data['quickview'][] = [
                     'name' => 'grants',
                     'min'  => $fund->min_size,
                     'max'  => $fund->max_size,
                     'term' => null,
-                    'rate' => null
+                    'rate' => null,
                 ];
             }
 
             // Loans
-            if ($fund->hasProvisionType('Loans'))
-            {
+            if ($fund->hasProvisionType('Loans')) {
                 $data['quickview'][] = [
                     'name' => 'loans',
                     'min'  => $fund->min_size,
                     'max'  => $fund->max_size,
                     'term' => $fund->investment_term,
-                    'rate' => $fund->loans_rate
+                    'rate' => $fund->loans_rate,
                 ];
             }
 
             // Equity
-            if ($fund->hasProvisionType('Equity'))
-            {
+            if ($fund->hasProvisionType('Equity')) {
                 $data['quickview'][] = [
                     'name' => 'equity',
                     'min'  => $fund->min_size,
                     'max'  => $fund->max_size,
                     'term' => null,
-                    'rate' => null
+                    'rate' => null,
                 ];
             }
 
             // Support
-            if ($fund->hasProvisionType('Support'))
-            {
+            if ($fund->hasProvisionType('Support')) {
                 $data['quickview'][] = [
                     'name' => 'support',
                     'min'  => null,
                     'max'  => null,
                     'term' => null,
-                    'rate' => null
+                    'rate' => null,
                 ];
             }
 
             // Platform
-            if ($fund->hasProvisionType('Platform'))
-            {
+            if ($fund->hasProvisionType('Platform')) {
                 $data['quickview'][] = [
                     'name' => 'platform',
                     'min'  => null,
                     'max'  => null,
                     'term' => null,
-                    'rate' => null
+                    'rate' => null,
                 ];
             }
 
             // Legislation
-            if ($fund->hasProvisionType('Legislation'))
-            {
+            if ($fund->hasProvisionType('Legislation')) {
                 $data['quickview'][] = [
                     'name' => 'legislation',
                     'min'  => null,
                     'max'  => null,
                     'term' => null,
-                    'rate' => null
+                    'rate' => null,
                 ];
             }
 

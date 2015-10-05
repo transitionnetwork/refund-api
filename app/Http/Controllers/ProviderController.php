@@ -40,8 +40,8 @@ class ProviderController extends Controller
      * Display the specified resource.
      *
      * @param Provider $provider
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Provider $provider)
     {

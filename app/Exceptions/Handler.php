@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use App\ProvisionType;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -45,36 +44,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof NotFoundHttpException)
-        {
+        if ($e instanceof NotFoundHttpException) {
             return response()->json(['message' => 'Bad request.', 'code' => 400], 400);
-        }
-        elseif ($e instanceof FundNotFoundException)
-        {
+        } elseif ($e instanceof FundNotFoundException) {
             return response()->json(['message' => 'The fund could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof ProvisionTypeNotFoundException)
-        {
+        } elseif ($e instanceof ProvisionTypeNotFoundException) {
             return response()->json(['message' => 'The provision type could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof CountryNotFoundException)
-        {
+        } elseif ($e instanceof CountryNotFoundException) {
             return response()->json(['message' => 'The country could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof RegionNotFoundException)
-        {
+        } elseif ($e instanceof RegionNotFoundException) {
             return response()->json(['message' => 'The region could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof LocationNotFoundException)
-        {
+        } elseif ($e instanceof LocationNotFoundException) {
             return response()->json(['message' => 'The location could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof OrganisationTypeNotFoundException)
-        {
+        } elseif ($e instanceof OrganisationTypeNotFoundException) {
             return response()->json(['message' => 'The organisation type could not be found.', 'code' => 404], 404);
-        }
-        elseif ($e instanceof ProviderNotFoundException)
-        {
+        } elseif ($e instanceof ProviderNotFoundException) {
             return response()->json(['message' => 'The provider could not be found.', 'code' => 404], 404);
         }
 //        else
@@ -83,6 +67,5 @@ class Handler extends ExceptionHandler
 //        }
 
         return parent::render($request, $e);
-
     }
 }

@@ -7,7 +7,6 @@ use App\Fund;
 
 class CountryFundsController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -17,6 +16,7 @@ class CountryFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param Country $country
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Country $country)
@@ -28,7 +28,8 @@ class CountryFundsController extends Controller
      * Display the specified resource.
      *
      * @param Country $country
-     * @param Fund $fund
+     * @param Fund    $fund
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Country $country, Fund $fund)
