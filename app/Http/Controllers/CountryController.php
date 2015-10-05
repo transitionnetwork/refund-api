@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -41,6 +40,7 @@ class CountryController extends Controller
      * Display the specified resource.
      *
      * @param Country $country
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Country $country)

@@ -1,5 +1,9 @@
-<?php namespace App\Exceptions;
+<?php
+
+namespace App\Exceptions;
 
 use Exception;
 
-class ProviderNotFoundException extends Exception {}
+class ProviderNotFoundException extends Exception
+{
+}

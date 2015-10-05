@@ -16,8 +16,8 @@ class OrganisationTypeFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param OrganisationType $organisation_type
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(OrganisationType $organisation_type)
     {
@@ -28,9 +28,9 @@ class OrganisationTypeFundsController extends Controller
      * Display the specified resource.
      *
      * @param OrganisationType $organisation_type
-     * @param Fund $fund
-     * @return \Illuminate\Http\Response
+     * @param Fund             $fund
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(OrganisationType $organisation_type, Fund $fund)
     {

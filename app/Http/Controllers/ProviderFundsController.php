@@ -16,8 +16,8 @@ class ProviderFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param Provider $provider
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Provider $provider)
     {

@@ -50,9 +50,10 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
      *
+     * @return \Illuminate\Http\Response
+     *
+     * @internal param int $id
      */
     public function show(User $user)
     {

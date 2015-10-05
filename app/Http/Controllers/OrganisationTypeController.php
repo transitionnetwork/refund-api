@@ -40,8 +40,8 @@ class OrganisationTypeController extends Controller
      * Display the specified resource.
      *
      * @param OrganisationType $organisation_type
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(OrganisationType $organisation_type)
     {

@@ -16,6 +16,7 @@ class ProvisionTypeFundsController extends Controller
      * Display a listing of the resource.
      *
      * @param ProvisionType $provision_type
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(ProvisionType $provision_type)
@@ -27,9 +28,9 @@ class ProvisionTypeFundsController extends Controller
      * Display the specified resource.
      *
      * @param ProvisionType $provision_type
-     * @param Fund $fund
-     * @return \Illuminate\Http\Response
+     * @param Fund          $fund
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(ProvisionType $provision_type, Fund $fund)
     {

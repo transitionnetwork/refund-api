@@ -40,8 +40,8 @@ class RegionController extends Controller
      * Display the specified resource.
      *
      * @param Region $region
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Region $region)
     {

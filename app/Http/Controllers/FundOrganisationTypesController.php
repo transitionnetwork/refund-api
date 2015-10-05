@@ -7,7 +7,6 @@ use App\OrganisationType;
 
 class FundOrganisationTypesController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('oauth', ['except' => ['index', 'show']]);
@@ -17,8 +16,8 @@ class FundOrganisationTypesController extends Controller
      * Display a listing of the resource.
      *
      * @param Fund $fund
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function index(Fund $fund)
     {
@@ -28,10 +27,10 @@ class FundOrganisationTypesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Fund $fund
+     * @param Fund             $fund
      * @param OrganisationType $organisation_type
-     * @return \Illuminate\Http\Response
      *
+     * @return \Illuminate\Http\Response
      */
     public function show(Fund $fund, OrganisationType $organisation_type)
     {
