@@ -21,7 +21,7 @@ class FundController extends Controller
      */
     public function index(Request $request)
     {
-        $funds = Fund::orderBy('provider_id')->get();
+        $funds = Fund::all();
 
         if ($request->has('format') && $request->get('format') == 'frontend')
         {
@@ -104,8 +104,52 @@ class FundController extends Controller
 
             $data['name']        = $fund->name;
             $data['provider']    = isset($fund->provider->name) ? $fund->provider->name : '';
-            $data['country']     = ( ! empty($fund->countries->toArray())) ? $fund->countries->toArray()[0]['name'] : "";
-            $data['state']       = ( ! empty($fund->locations->toArray())) ? $fund->locations->toArray()[0]['name'] : "";
+
+            $countries = '';
+
+            if ( ! empty($fund->countries->toArray()))
+            {
+                $temp = [];
+
+                foreach ($fund->countries as $country)
+                {
+                    $temp[] = $country->name;
+                }
+                $countries = implode(', ', $temp);
+            }
+
+            $data['countries']   = $countries;
+
+            $regions = '';
+
+            if ( ! empty($fund->regions->toArray()))
+            {
+                $temp = [];
+
+                foreach ($fund->regions as $region)
+                {
+                    $temp[] = $region->name;
+                }
+                $regions = implode(', ', $temp);
+            }
+
+            $data['regions']     = $regions;
+
+            $locations = '';
+
+            if ( ! empty($fund->locations->toArray()))
+            {
+                $temp = [];
+
+                foreach ($fund->locations as $location)
+                {
+                    $temp[] = $location->name;
+                }
+                $locations = implode(', ', $temp);
+            }
+
+            $data['locations']     = $locations;
+
             $data['date']        = $fund->created_at->format('d/m/y');
             $data['website']     = $fund->website;
             $data['edit']        = true;

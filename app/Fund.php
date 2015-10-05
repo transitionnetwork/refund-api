@@ -27,7 +27,7 @@ class Fund extends Model
      */
     public function provider()
     {
-        return $this->hasOne('App\Provider', 'id');
+        return $this->belongsTo('App\Provider');
     }
 
     /**
