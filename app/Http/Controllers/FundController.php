@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fund;
 use App\Http\Requests\CreateFundRequest;
 use Illuminate\Http\Request;
+use Cache;
 
 class FundController extends Controller
 {
@@ -21,11 +22,15 @@ class FundController extends Controller
      */
     public function index(Request $request)
     {
-        $funds = Fund::all();
+        $funds = Cache::remember('funds', 15, function() {
+           return Fund::all();
+        });
 
         if ($request->has('format') && $request->get('format') == 'frontend')
         {
-            return $this->frontendJSONTransformer($funds);
+            return Cache::remember('funds-frontend', 15, function() use ($funds) {
+                return $this->frontendJSONTransformer($funds);
+            });
         }
 
         return response()->json(['data' => $funds], 200);
