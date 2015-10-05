@@ -10,6 +10,8 @@ class OrganisationType extends Model
 
     protected $fillable = ['name'];
 
+    protected $hidden = ['id', 'created_at', 'updated_at', 'pivot'];
+
     /**
      * Returns the funds associated with the organisation type.
      *

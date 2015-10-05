@@ -20,6 +20,8 @@ class Fund extends Model
         'status',
     ];
 
+    protected $hidden = ['id', 'provider_id', 'created_at', 'updated_at', 'pivot'];
+
     /**
      * Returns the provider associated with the fund.
      *

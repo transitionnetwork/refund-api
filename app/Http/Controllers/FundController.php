@@ -23,13 +23,11 @@ class FundController extends Controller
     public function index(Request $request)
     {
         $funds = Cache::remember('funds', 15, function() {
-           return Fund::all();
+            return Fund::all();
         });
 
         if ($request->has('format') && $request->get('format') == 'frontend')
         {
-            return $this->frontendJSONTransformer($funds);
-
             return Cache::remember('funds-frontend', 15, function() use ($funds) {
                 return $this->frontendJSONTransformer($funds);
             });
