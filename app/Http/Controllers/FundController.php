@@ -142,7 +142,7 @@ class FundController extends Controller
             $data['description'] = $fund->focus;
 
             $data['profit'] = $fund->hasOrganisationType('For-profit');
-            $data['non-profit'] = $fund->hasOrganisationType('Non-profit');
+            $data['non_profit'] = $fund->hasOrganisationType('Non-profit');
 
             $data['grant'] = $fund->hasProvisionType('Grant');
             $data['debt'] = $fund->hasProvisionType('Loans');
