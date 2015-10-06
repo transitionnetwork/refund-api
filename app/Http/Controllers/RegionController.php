@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Region;
 use Illuminate\Http\Request;
+use Cache;
 
 class RegionController extends Controller
 {
@@ -19,7 +20,9 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $regions = Region::all();
+        $regions = Cache::remember('regions', 15, function() {
+            return Region::orderBy('name')->get();
+        });
 
         return response()->json(['data' => $regions], 200);
     }

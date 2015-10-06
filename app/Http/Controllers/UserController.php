@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use Cache;
 
 class UserController extends Controller
 {
@@ -20,7 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = Cache::remember('users', 15, function() {
+            return User::all();
+        });
 
         return response()->json(['data' => $users], 200);
     }

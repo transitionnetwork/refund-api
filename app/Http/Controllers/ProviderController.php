@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Provider;
 use Illuminate\Http\Request;
+use Cache;
 
 class ProviderController extends Controller
 {
@@ -19,7 +20,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
+        $providers = Cache::remember('providers', 15, function() {
+            return Provider::orderBy('name')->get();
+        });
 
         return response()->json(['data' => $providers], 200);
     }

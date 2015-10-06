@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use Illuminate\Http\Request;
+use Cache;
 
 class CountryController extends Controller
 {
@@ -19,7 +20,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
+        $countries = Cache::remember('countries', 15, function() {
+            return Country::orderBy('name')->get();
+        });
 
         return response()->json(['data' => $countries], 200);
     }

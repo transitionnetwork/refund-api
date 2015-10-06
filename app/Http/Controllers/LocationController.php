@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use Illuminate\Http\Request;
+use Cache;
 
 class LocationController extends Controller
 {
@@ -19,7 +20,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
+        $locations = Cache::remember('locations', 15, function() {
+            return Location::orderBy('name')->get();
+        });
 
         return response()->json(['data' => $locations], 200);
     }
