@@ -141,19 +141,15 @@ class FundController extends Controller
             $data['edit'] = true;
             $data['description'] = $fund->focus;
 
-            $data['organisation_types'] = [
-                'profit'     => $fund->hasOrganisationType('For-profit'),
-                'non-profit' => $fund->hasOrganisationType('Non-profit'),
-            ];
+            $data['profit'] = $fund->hasOrganisationType('For-profit');
+            $data['non-profit'] = $fund->hasOrganisationType('Non-profit');
 
-            $data['cluster'] = [
-                'grant'       => $fund->hasProvisionType('Grant'),
-                'debt'        => $fund->hasProvisionType('Loans'),
-                'equity'      => $fund->hasProvisionType('Equity'),
-                'support'     => $fund->hasProvisionType('Support'),
-                'platform'    => $fund->hasProvisionType('Platform'),
-                'legislation' => $fund->hasProvisionType('Legislation'),
-            ];
+            $data['grant'] = $fund->hasProvisionType('Grant');
+            $data['debt'] = $fund->hasProvisionType('Loans');
+            $data['equity'] = $fund->hasProvisionType('Equity');
+            $data['support'] = $fund->hasProvisionType('Support');
+            $data['platform'] = $fund->hasProvisionType('Platform');
+            $data['legislation'] = $fund->hasProvisionType('Legislation');
 
             // Grant
             if ($fund->hasProvisionType('Grant')) {
