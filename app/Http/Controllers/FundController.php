@@ -24,7 +24,9 @@ class FundController extends Controller
     public function index(Request $request)
     {
         $funds = Cache::remember('funds', 15, function () {
-            return Fund::all();
+            return Fund::leftJoin('providers', function($join) {
+                $join->on('funds.provider_id', '=', 'providers.id');
+            })->orderBy('providers.name')->get(['funds.*']);
         });
 
         if ($request->has('format') && $request->get('format') == 'frontend') {
