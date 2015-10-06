@@ -134,6 +134,7 @@ class FundController extends Controller
             }
 
             $data['locations'] = $locations;
+            $data['max'] = $fund->max_size;
 
             $data['date'] = $fund->created_at->format('d/m/y');
             $data['website'] = $fund->website;
