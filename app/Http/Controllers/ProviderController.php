@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Provider;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
@@ -20,7 +20,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Cache::remember('providers', 15, function() {
+        $providers = Cache::remember('providers', 15, function () {
             return Provider::orderBy('name')->get();
         });
 

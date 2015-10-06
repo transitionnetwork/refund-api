@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Location;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
@@ -20,7 +20,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Cache::remember('locations', 15, function() {
+        $locations = Cache::remember('locations', 15, function () {
             return Location::orderBy('name')->get();
         });
 

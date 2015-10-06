@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Region;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
@@ -20,7 +20,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $regions = Cache::remember('regions', 15, function() {
+        $regions = Cache::remember('regions', 15, function () {
             return Region::orderBy('name')->get();
         });
 

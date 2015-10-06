@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = Cache::remember('users', 15, function() {
+        $users = Cache::remember('users', 15, function () {
             return User::all();
         });
 
