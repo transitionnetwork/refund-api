@@ -144,6 +144,18 @@ class FundController extends Controller
             $data['profit'] = $fund->hasOrganisationType('For-profit');
             $data['non_profit'] = $fund->hasOrganisationType('Non-profit');
 
+            if (!empty($fund->organisation_types->lists('name')->toArray())) {
+                $supports = implode(', ', $fund->organisation_types->lists('name')->toArray());
+            }
+            else
+            {
+                $supports = 'Unknown';
+            }
+
+            $data['supports'] = $supports;
+
+            $data['other'] = ( ! $data['profit'] && ! $data['non_profit']);
+
             $data['grant'] = $fund->hasProvisionType('Grant');
             $data['debt'] = $fund->hasProvisionType('Loans');
             $data['equity'] = $fund->hasProvisionType('Equity');
