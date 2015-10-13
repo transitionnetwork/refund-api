@@ -146,31 +146,27 @@ class FundController extends Controller
 
             if (!empty($fund->organisation_types->lists('name')->toArray())) {
                 $supports = implode(', ', $fund->organisation_types->lists('name')->toArray());
-            }
-            else
-            {
+            } else {
                 $supports = 'Unknown';
             }
 
             $data['supports'] = $supports;
 
-            $data['other'] = ( ! $data['profit'] && ! $data['non_profit']);
+            $data['other'] = (!$data['profit'] && !$data['non_profit']);
 
-            $data['grant']       = $fund->hasProvisionType('Grant');
-            $data['debt']        = $fund->hasProvisionType('Loans');
-            $data['equity']      = $fund->hasProvisionType('Equity');
-            $data['support']     = $fund->hasProvisionType('Support');
-            $data['platform']    = $fund->hasProvisionType('Platform');
+            $data['grant'] = $fund->hasProvisionType('Grant');
+            $data['debt'] = $fund->hasProvisionType('Loans');
+            $data['equity'] = $fund->hasProvisionType('Equity');
+            $data['support'] = $fund->hasProvisionType('Support');
+            $data['platform'] = $fund->hasProvisionType('Platform');
             $data['legislation'] = $fund->hasProvisionType('Legislation');
 
-            if ($fund->min_size == 0)
-            {
-                $fund->min_size = "-";
+            if ($fund->min_size == 0) {
+                $fund->min_size = '-';
             }
 
-            if ($fund->max_size == 0)
-            {
-                $fund->max_size = "-";
+            if ($fund->max_size == 0) {
+                $fund->max_size = '-';
             }
 
             // Grant
