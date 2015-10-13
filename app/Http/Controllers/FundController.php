@@ -165,12 +165,12 @@ class FundController extends Controller
 
             if ($fund->min_size == 0)
             {
-                $fund->min_size = "";
+                $fund->min_size = "-";
             }
 
             if ($fund->max_size == 0)
             {
-                $fund->max_size = "";
+                $fund->max_size = "-";
             }
 
             // Grant
