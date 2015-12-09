@@ -2,7 +2,7 @@
 
 ## Documentation
 
-The documentation will be added in the next few days.
+Coming soon! I promise.
 
 ## Security Vulnerabilities
 
