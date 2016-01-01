@@ -20,7 +20,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Cache::remember('providers', 15, function () {
+        $providers = Cache::rememberForever('providers', function () {
             return Provider::orderBy('name')->get();
         });
 

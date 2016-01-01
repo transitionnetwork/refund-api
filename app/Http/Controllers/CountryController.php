@@ -20,7 +20,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Cache::remember('countries', 15, function () {
+        $countries = Cache::rememberForever('countries', function () {
             return Country::orderBy('name')->get();
         });
 

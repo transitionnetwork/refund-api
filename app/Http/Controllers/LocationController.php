@@ -20,7 +20,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Cache::remember('locations', 15, function () {
+        $locations = Cache::rememberForever('locations', function () {
             return Location::orderBy('name')->get();
         });
 

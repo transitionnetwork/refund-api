@@ -20,7 +20,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $regions = Cache::remember('regions', 15, function () {
+        $regions = Cache::rememberForever('regions', function () {
             return Region::orderBy('name')->get();
         });
 

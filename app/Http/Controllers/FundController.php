@@ -23,14 +23,14 @@ class FundController extends Controller
      */
     public function index(Request $request)
     {
-        $funds = Cache::remember('funds', 15, function () {
+        $funds = Cache::rememberForever('funds', function () {
             return Fund::leftJoin('providers', function ($join) {
                 $join->on('funds.provider_id', '=', 'providers.id');
             })->orderBy('providers.name')->get(['funds.*']);
         });
 
         if ($request->has('format') && $request->get('format') == 'frontend') {
-            return Cache::remember('funds-frontend', 15, function () use ($funds) {
+            return Cache::rememberForever('funds-frontend', function () use ($funds) {
                 return $this->frontendJSONTransformer($funds);
             });
         }
