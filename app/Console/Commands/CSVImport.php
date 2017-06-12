@@ -66,8 +66,16 @@ class CSVImport extends Command
 
         $rows = $csv->fetchAll();
 
-
         $headers = $csv->fetchOne();
+
+        $this->info('Funds extracted from CSV file...');
+
+        // Delete all existing funds
+        Fund::all()->each(function($item, $key) {
+            $item->delete();
+        });
+
+        $this->info('Existing funds deleted...');
 
         foreach ($rows as $row)
         {
@@ -228,5 +236,7 @@ class CSVImport extends Command
                 $fund->provision_types()->attach($provision_type_ids);
             }
         }
+
+        $this->info('Done!');
     }
 }
