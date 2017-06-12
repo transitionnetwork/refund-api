@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\CSVImport::class,
     ];
 
     /**
@@ -23,9 +23,5 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command('inspire')
-                 ->hourly();
-    }
+    protected function schedule(Schedule $schedule) {}
 }
