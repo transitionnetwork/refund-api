@@ -1,8 +1,4 @@
-## REfund API 
-
-## Documentation
-
-Coming soon! I promise.
+## REfund API
 
 ## Security Vulnerabilities
 
